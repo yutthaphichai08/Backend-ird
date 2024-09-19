@@ -78,23 +78,23 @@ exports.updateContent = (req, res) => {
   });
 };
 
-// exports.deleteContent = (req, res) => {
-//   const conId = req.params.id;
+exports.deleteContent = (req, res) => {
+  const conId = req.params.id;
 
-//   const query = "UPDATE comment SET is_active = 1 WHERE id = ?";
-//   connection.query(query, [conId], (err, results) => {
-//     if (err) {
-//       console.log("Error delete data:", err);
-//       res.status(500).json({ err: "Internal Server Error" });
-//     } else {
-//       if (results.affectedRows === 0) {
-//         res.status(404).json({ msg: "User not found" });
-//       } else {
-//         res.json({
-//           msg: "User delete successfully",
-//           affectedRows: results.affectedRows,
-//         });
-//       }
-//     }
-//   });
-// };
+  const query = "DELETE FROM comment WHERE id = ?";
+  connection.query(query, [conId], (err, results) => {
+    if (err) {
+      console.log("Error delete data:", err);
+      res.status(500).json({ err: "Internal Server Error" });
+    } else {
+      if (results.affectedRows === 0) {
+        res.status(404).json({ msg: "User not found" });
+      } else {
+        res.json({
+          msg: "Content delete successfully",
+          affectedRows: results.affectedRows,
+        });
+      }
+    }
+  });
+};

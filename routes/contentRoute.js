@@ -5,7 +5,7 @@ const {
   getAllContent,
   getContent,
   updateContent,
-  //   deleteUser,
+  deleteContent,
 } = require("../controllers/contentController");
 
 // การเรียกใช้งาน
@@ -13,6 +13,6 @@ router.post("/insert", insertContent);
 router.get("/content", getAllContent);
 router.get("/content/:id", getContent);
 router.put("/content/update/:id", updateContent);
-// router.delete("/delete/:id", deleteUser);
+router.delete("/delete/:id", deleteContent);
 
 module.exports = router;
