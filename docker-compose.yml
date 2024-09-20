@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: localhost
+      DB_USER: root
+      DB_PASS: 1111
+      DB_NAME: db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1111
+      MYSQL_ROOT_PASSWORD: 1111
+    ports:
+      - "3306:3306"
