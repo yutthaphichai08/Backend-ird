@@ -7,14 +7,20 @@ const db = mysql.createConnection({
   database: "db",
 });
 
-// เชื่อมต่อกับฐานข้อมูล
-db.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-    return;
-  }
-  console.log("Connected to MySQL database.");
-});
+// ฟังก์ชันสำหรับเชื่อมต่อกับฐานข้อมูล
+const connectWithRetry = () => {
+  db.connect((err) => {
+    if (err) {
+      console.error("Database connection failed, retrying in 5 seconds...", err);
+      setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
+    } else {
+      console.log("Connected to MySQL database.");
+    }
+  });
+};
+
+// เริ่มต้นการเชื่อมต่อ
+connectWithRetry();
 
 // ส่งออกการเชื่อมต่อ
 module.exports = db;
