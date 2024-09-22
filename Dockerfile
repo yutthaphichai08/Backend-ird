@@ -1,20 +1,20 @@
-# ใช้ Node.js เป็นฐาน
-FROM node:16
+# ใช้ Node.js official image เป็น base image (ในตัวอย่างนี้ใช้เวอร์ชัน 18)
+FROM node:18
 
-# ตั้งค่า working directory
+# ตั้ง working directory ภายใน container
 WORKDIR /usr/src/app
 
-# คัดลอก package.json และ package-lock.json
+# คัดลอกไฟล์ package.json และ package-lock.json (ถ้ามี) ไปยัง working directory
 COPY package*.json ./
 
-# ติดตั้ง dependencies
+# ติดตั้ง dependencies จาก package.json รวมถึง express
 RUN npm install
 
-# คัดลอกไฟล์ที่เหลือไปยัง container
+# คัดลอกไฟล์ทั้งหมดจาก local ไปยัง container
 COPY . .
 
-# เปิดพอร์ตที่ใช้
-EXPOSE 3000
+# เปิดพอร์ตที่แอปพลิเคชันจะรัน
+EXPOSE 3001
 
-# รันแอป
+# รันคำสั่งเพื่อเริ่มต้นแอป
 CMD ["node", "app.js"]
