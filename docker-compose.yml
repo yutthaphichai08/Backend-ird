@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       DB_HOST: localhost
       DB_USER: root
@@ -14,6 +14,15 @@ services:
       DB_NAME: db
     depends_on:
       - db
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: 1111  # เปลี่ยนรหัสผ่านให้ตรงกัน
 
   db:
     image: mysql:5.7

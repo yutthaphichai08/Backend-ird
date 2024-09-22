@@ -1,10 +1,10 @@
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
-  host: "34.122.12.221",
+  host: "db",
   user: "root",
   password: "1111",
-  database: "iron",
+  database: "db",
 });
 
 // เชื่อมต่อกับฐานข้อมูล

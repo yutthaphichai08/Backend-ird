@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # เปิดพอร์ตที่แอปพลิเคชันจะรัน
-EXPOSE 3001
+EXPOSE 3000
 
 # รันคำสั่งเพื่อเริ่มต้นแอป
 CMD ["node", "app.js"]
